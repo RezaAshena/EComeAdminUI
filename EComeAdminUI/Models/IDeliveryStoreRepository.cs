@@ -13,5 +13,7 @@ namespace EComeAdminUI.Models
         IEnumerable<DeliveryStore> GetAllDeliveryStore();
 
         DeliveryStore AddDeliveryStore(DeliveryStore deliveryStore);
+
+        Task<List<DeliveryStore>> GetAll();
     }
 }

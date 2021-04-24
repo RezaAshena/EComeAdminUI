@@ -1,16 +1,15 @@
-﻿using System;
+﻿using Nest;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace EComeAdminUI.Models
 {
-    public class MockDeliveryStoreRepository : IDeliveryStoreRepository
+    public class DeliveryStoreRepository : IDeliveryStoreRepository
     {
-
         private List<DeliveryStore> _deliveryStore;
-
-        public MockDeliveryStoreRepository()
+        public DeliveryStoreRepository()
         {
             _deliveryStore = new List<DeliveryStore>()
             {
@@ -20,7 +19,6 @@ namespace EComeAdminUI.Models
                 new DeliveryStore(){Id=Guid.NewGuid(),FSA="LOP",StoreNumber="128",DeliveryFeePLU=Convert.ToInt32(9.004),ClientCode="1020",DeliveryVendorId=14,DeliveryVendorName="MM_Delivery",DeliveryFeePromo="8.004" },
             };
         }
-
         public DeliveryStore AddDeliveryStore(DeliveryStore deliveryStore)
         {
             deliveryStore.Id = new Guid();
@@ -28,10 +26,7 @@ namespace EComeAdminUI.Models
             return deliveryStore;
         }
 
-        public Task<List<DeliveryStore>> GetAll()
-        {
-            throw new NotImplementedException();
-        }
+
 
         public IEnumerable<DeliveryStore> GetAllDeliveryStore()
         {
@@ -40,8 +35,14 @@ namespace EComeAdminUI.Models
 
         public DeliveryStore GetDeliveryStore(string fsa)
         {
-           
             return _deliveryStore.FirstOrDefault(d => d.FSA == fsa);
+        }
+
+        public async Task<List<DeliveryStore>> GetAll()
+        {
+            throw new NotImplementedException();
+            var searchRequest = new SearchRequest<DeliveryStore>();
+            
         }
     }
 }
