@@ -1,0 +1,46 @@
+﻿@model DeliveryStore
+@{ 
+    ViewBag.Title = "Create Delivery Store";
+}
+
+<form asp-controller="Home" asp-action="Create" method="post" class="mt-3">
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" asp-for="FSA"></label>
+        <input class="form-control" asp-for="FSA" />
+        <span asp-validation-for="FSA" class="text-danger"></span>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" asp-for="StoreNumber"></label>
+        <input class="form-control" asp-for="StoreNumber" />
+        <span asp-validation-for="StoreNumber" class="text-danger"></span>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" asp-for="DeliveryVendorId"></label>
+        <input class="form-control" asp-for="DeliveryVendorId" />
+        <span asp-validation-for="DeliveryVendorId" class="text-danger"></span>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" asp-for="DeliveryVendorName"></label>
+        <input class="form-control" asp-for="DeliveryVendorName" />
+        <span asp-validation-for="DeliveryVendorName" class="text-danger"></span>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" asp-for="DeliveryFeePLU"></label>
+        <input class="form-control" asp-for="DeliveryFeePLU" />
+        <span asp-validation-for="DeliveryFeePLU" class="text-danger"></span>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" asp-for="DeliveryFeePromo"></label>
+        <input class="form-control" asp-for="DeliveryFeePromo" />
+        <span asp-validation-for="DeliveryFeePromo" class="text-danger"></span>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label" asp-for="ClientCode"></label>
+        <input class="form-control" asp-for="ClientCode" />
+        <span asp-validation-for="ClientCode" class="text-danger"></span>
+    </div>
+
+    <div>
+        <button class="btn btn-primary" type="submit">Create</button>
+    </div>
+</form>

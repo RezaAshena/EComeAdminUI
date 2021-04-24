@@ -1,0 +1,33 @@
+﻿@model DeliveryStoreViewModel
+
+
+    <h3>@ViewData["PageTitle"]</h3>
+
+    @{
+        var deliveryStore = ViewData["DeliveryStore"] as EComeAdminUI.Models.DeliveryStore;
+    }
+
+    <div>
+        Id:@Model.DeliveryStore.Id
+    </div>
+    <div>
+        FSA:@Model.DeliveryStore.FSA
+    </div>
+    <div>
+        StoreNumber:@Model.DeliveryStore.StoreNumber
+    </div>
+    <div>
+        DeliveryVendorId:@Model.DeliveryStore.DeliveryVendorId
+    </div>
+    <div>
+        DeliveryVendorName:@Model.DeliveryStore.DeliveryVendorName
+    </div>
+    <div>
+        DeliveryFeePLU:@Model.DeliveryStore.DeliveryFeePLU
+    </div>
+    <div>
+        DeliveryFeePromo:@Model.DeliveryStore.DeliveryFeePromo
+    </div>
+    <div>
+        ClientCode:@Model.DeliveryStore.ClientCode
+    </div>
