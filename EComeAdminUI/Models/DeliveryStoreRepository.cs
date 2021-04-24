@@ -41,7 +41,13 @@ namespace EComeAdminUI.Models
         public async Task<List<DeliveryStore>> GetAll()
         {
             throw new NotImplementedException();
-            var searchRequest = new SearchRequest<DeliveryStore>();
+            var searchRequest = new SearchRequest<DeliveryStore>()
+            {
+                From = 0,
+                Size = 1000,
+                Scroll = "5m",
+                Query = new QueryContainer(new MatchAllQuery()),
+            };
             
         }
     }
