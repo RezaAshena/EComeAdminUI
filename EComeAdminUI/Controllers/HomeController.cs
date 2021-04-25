@@ -22,10 +22,10 @@ namespace EComeAdminUI.Controllers
         }
 
 
-        public ViewResult Index()
+        public Task<List<DeliveryStore>> Index()
         {
             var model = _deliveryRepository.GetAll();
-            return View(model);
+            return model;
         }
 
 
