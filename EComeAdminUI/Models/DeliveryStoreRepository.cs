@@ -8,16 +8,13 @@ namespace EComeAdminUI.Models
 {
     public class DeliveryStoreRepository : IDeliveryStoreRepository
     {
+        private readonly IDatabaseClient _databaseClient;
+        private readonly IElasticClient _elasticClient;
         private List<DeliveryStore> _deliveryStore;
-        public DeliveryStoreRepository()
+        public DeliveryStoreRepository(IDatabaseClient databaseClient)
         {
-            _deliveryStore = new List<DeliveryStore>()
-            {
-                new DeliveryStore(){Id=Guid.NewGuid(),FSA="L4T",StoreNumber="128",DeliveryFeePLU=Convert.ToInt32(9.004),ClientCode="1023",DeliveryVendorId=14,DeliveryVendorName="MM_Delivery",DeliveryFeePromo="8.004" },
-                new DeliveryStore(){Id=Guid.NewGuid(),FSA="N1K",StoreNumber="121",DeliveryFeePLU=Convert.ToInt32(9.004),ClientCode="1022",DeliveryVendorId=14,DeliveryVendorName="MM_Delivery",DeliveryFeePromo="8.004" },
-                new DeliveryStore(){Id=Guid.NewGuid(),FSA="V1Y",StoreNumber="124",DeliveryFeePLU=Convert.ToInt32(9.004),ClientCode="1021",DeliveryVendorId=14,DeliveryVendorName="MM_Delivery",DeliveryFeePromo="8.004" },
-                new DeliveryStore(){Id=Guid.NewGuid(),FSA="LOP",StoreNumber="128",DeliveryFeePLU=Convert.ToInt32(9.004),ClientCode="1020",DeliveryVendorId=14,DeliveryVendorName="MM_Delivery",DeliveryFeePromo="8.004" },
-            };
+            _databaseClient = databaseClient;
+            _elasticClient = _databaseClient.GetDeliveryStoreIndexElasticClient();
         }
         public DeliveryStore AddDeliveryStore(DeliveryStore deliveryStore)
         {
@@ -40,7 +37,7 @@ namespace EComeAdminUI.Models
 
         public async Task<List<DeliveryStore>> GetAll()
         {
-            throw new NotImplementedException();
+          
             var searchRequest = new SearchRequest<DeliveryStore>()
             {
                 From = 0,
@@ -48,7 +45,20 @@ namespace EComeAdminUI.Models
                 Scroll = "5m",
                 Query = new QueryContainer(new MatchAllQuery()),
             };
-            
+
+            var searchResponse = await _elasticClient.SearchAsync<DeliveryStore>(searchRequest);
+            if (searchResponse.Documents.Count > 0)
+            {
+                var storeResponse = searchResponse.Documents;
+                return  storeResponse.ToList();
+            }
+            else
+            {
+                return null;
+            }
+
         }
+
+
     }
 }

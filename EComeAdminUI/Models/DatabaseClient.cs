@@ -21,7 +21,7 @@ namespace EComeAdminUI.Models
 
         public IElasticClient GetDeliveryStoreIndexElasticClient()
         {
-            //throw new NotImplementedException();
+           
             var url = _config["Database:ElasticSearchUrl"];
             var defaultIndex = _config["Database:DeliveryStoreElasticIndex"];
             var profileName = _config["Database:ProfileName"];

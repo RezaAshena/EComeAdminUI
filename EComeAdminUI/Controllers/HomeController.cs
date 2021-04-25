@@ -24,9 +24,16 @@ namespace EComeAdminUI.Controllers
 
         public ViewResult Index()
         {
-            var model = _deliveryRepository.GetAllDeliveryStore();
+            var model = _deliveryRepository.GetAll();
             return View(model);
         }
+
+
+        //public ViewResult Index()
+        //{
+        //    var model = _deliveryRepository.GetAll();
+        //    return View(model);
+        //}
 
         [HttpGet]
         public ViewResult Create()

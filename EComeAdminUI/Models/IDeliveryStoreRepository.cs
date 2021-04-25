@@ -15,5 +15,6 @@ namespace EComeAdminUI.Models
         DeliveryStore AddDeliveryStore(DeliveryStore deliveryStore);
 
         Task<List<DeliveryStore>> GetAll();
+
     }
 }

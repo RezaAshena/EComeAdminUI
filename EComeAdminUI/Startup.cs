@@ -26,8 +26,12 @@ namespace EComeAdminUI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IDatabaseClient, DatabaseClient>();
             services.AddControllersWithViews();
-            services.AddSingleton<IDeliveryStoreRepository, MockDeliveryStoreRepository>();
+            //services.AddSingleton<IDeliveryStoreRepository, MockDeliveryStoreRepository>();
+
+            services.AddTransient<IDeliveryStoreRepository, DeliveryStoreRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
