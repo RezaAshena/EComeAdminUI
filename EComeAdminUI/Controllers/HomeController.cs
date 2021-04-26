@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Nest;
 
 namespace EComeAdminUI.Controllers
 {
@@ -22,11 +23,13 @@ namespace EComeAdminUI.Controllers
         }
 
 
-        public Task<List<DeliveryStore>> Index()
+        public async Task<ViewResult> Index()
         {
-            var model = _deliveryRepository.GetAll();
-            return model;
+            var model =await _deliveryRepository.GetAll();
+            return View(model);
         }
+
+
 
 
         //public ViewResult Index()

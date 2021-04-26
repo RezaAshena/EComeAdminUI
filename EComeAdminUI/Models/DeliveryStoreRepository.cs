@@ -37,8 +37,9 @@ namespace EComeAdminUI.Models
 
         public async Task<List<DeliveryStore>> GetAll()
         {
-          
-            var searchRequest = new SearchRequest<DeliveryStore>()
+            DeliveryStore deliveryStore = null;
+
+              var searchRequest = new SearchRequest<DeliveryStore>()
             {
                 From = 0,
                 Size = 1000,
@@ -50,7 +51,25 @@ namespace EComeAdminUI.Models
             if (searchResponse.Documents.Count > 0)
             {
                 var storeResponse = searchResponse.Documents;
-                return  storeResponse.ToList();
+                List<DeliveryStore> dsList = new List<DeliveryStore>();
+                foreach(var item in storeResponse)
+                {
+                    deliveryStore = new DeliveryStore
+                    {
+                        Id= item.Id,
+                        FSA=item.FSA,
+                        StoreNumber=item.StoreNumber,
+                        DeliveryVendorId = item.DeliveryVendorId,
+                        DeliveryVendorName = item.DeliveryVendorName,
+                        DeliveryFeePLU = item.DeliveryFeePLU,
+                        DeliveryFeePromo = item.DeliveryFeePromo,
+                        ClientCode = item.ClientCode
+                    };
+                    dsList.Add(deliveryStore);
+                }
+
+                //return  storeResponse.ToList();
+                return dsList;
             }
             else
             {

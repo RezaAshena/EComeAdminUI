@@ -1,25 +1,4 @@
-﻿@*@model List<DeliveryStore>*@
-@*List<DeliveryStore>*@
-@model Nest.ISearchResponse<DeliveryStore>
-
-
-
-@*<form asp-controller="Home" asp-action="Index" method="post">
-    <input type="text" name="query" />
-    <input type="submit" value="Search" />
-</form>
-@if (Model.Documents.Any())
-{
-    <h3>Search Results</h3>
-    <ul>
-        @foreach (var book in Model.Documents)
-        {
-            <li>Title: @book.FSA (ISBN: @book.StoreNumber)</li>
-        }
-    </ul>
-}*@
-
-<table class="table table-striped table-bordered table-sm table-hover followup" style="width: 100%;">
+﻿<table class="table table-striped table-bordered table-sm table-hover followup" style="width: 100%;">
         <caption style="text-align:center;caption-side:top;color:#0275d8;font-size:medium;font-weight:bolder">Delivery Stors</caption>
         <thead class="badge-primary">
             <tr>
@@ -34,7 +13,7 @@
         </thead>
         <tbody>
 
-            @foreach (var deliveryStore in Model.Documents)
+            @foreach (var deliveryStore in Model)
             {
 
 

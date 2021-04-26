@@ -28,7 +28,7 @@ namespace EComeAdminUI
         {
             services.AddSingleton<IDatabaseClient, DatabaseClient>();
             services.AddControllersWithViews();
-            //services.AddSingleton<IDeliveryStoreRepository, MockDeliveryStoreRepository>();
+          //services.AddSingleton<IDeliveryStoreRepository, MockDeliveryStoreRepository>();
 
             services.AddTransient<IDeliveryStoreRepository, DeliveryStoreRepository>();
 
