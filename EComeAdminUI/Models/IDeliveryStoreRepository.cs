@@ -16,5 +16,9 @@ namespace EComeAdminUI.Models
 
         Task<List<DeliveryStore>> GetAll();
 
+        DeliveryStore DeleteDeliveryStore(string fsa);
+        DeliveryStore UpdateDeliveryStore(DeliveryStore deliveryStore);
+
+
     }
 }

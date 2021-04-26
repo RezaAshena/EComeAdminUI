@@ -39,7 +39,7 @@ namespace EComeAdminUI.Models
         {
             DeliveryStore deliveryStore = null;
 
-              var searchRequest = new SearchRequest<DeliveryStore>()
+            var searchRequest = new SearchRequest<DeliveryStore>()
             {
                 From = 0,
                 Size = 1000,
@@ -52,13 +52,13 @@ namespace EComeAdminUI.Models
             {
                 var storeResponse = searchResponse.Documents;
                 List<DeliveryStore> dsList = new List<DeliveryStore>();
-                foreach(var item in storeResponse)
+                foreach (var item in storeResponse)
                 {
                     deliveryStore = new DeliveryStore
                     {
-                        Id= item.Id,
-                        FSA=item.FSA,
-                        StoreNumber=item.StoreNumber,
+                        Id = item.Id,
+                        FSA = item.FSA,
+                        StoreNumber = item.StoreNumber,
                         DeliveryVendorId = item.DeliveryVendorId,
                         DeliveryVendorName = item.DeliveryVendorName,
                         DeliveryFeePLU = item.DeliveryFeePLU,
@@ -68,7 +68,6 @@ namespace EComeAdminUI.Models
                     dsList.Add(deliveryStore);
                 }
 
-                //return  storeResponse.ToList();
                 return dsList;
             }
             else
@@ -78,6 +77,33 @@ namespace EComeAdminUI.Models
 
         }
 
+        public DeliveryStore DeleteDeliveryStore(string fsa)
+        {
+            DeliveryStore deliveryStore = _deliveryStore.FirstOrDefault(d => d.FSA == fsa);
+            if (deliveryStore != null)
+            {
+                _deliveryStore.Remove(deliveryStore);
+            }
+            return deliveryStore;
+        }
 
+        public DeliveryStore UpdateDeliveryStore(DeliveryStore deliveryStoreChanges)
+        {
+            DeliveryStore deliveryStore = _deliveryStore.FirstOrDefault(d => d.FSA == deliveryStoreChanges.FSA);
+            if (deliveryStore != null)
+            {
+                deliveryStore.Id = deliveryStoreChanges.Id;
+                deliveryStore.FSA = deliveryStoreChanges.FSA;
+                deliveryStore.StoreNumber = deliveryStoreChanges.StoreNumber;
+                deliveryStore.DeliveryVendorId = deliveryStoreChanges.DeliveryVendorId;
+                deliveryStore.DeliveryVendorName = deliveryStoreChanges.DeliveryVendorName;
+                deliveryStore.DeliveryFeePLU = deliveryStoreChanges.DeliveryFeePLU;
+                deliveryStore.DeliveryFeePromo = deliveryStoreChanges.DeliveryFeePromo;
+                deliveryStore.ClientCode = deliveryStoreChanges.ClientCode;
+
+
+            }
+            return deliveryStore;
+        }
     }
 }

@@ -28,6 +28,11 @@ namespace EComeAdminUI.Models
             return deliveryStore;
         }
 
+        public DeliveryStore DeleteDeliveryStore(string fsa)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<List<DeliveryStore>> GetAll()
         {
             throw new NotImplementedException();
@@ -42,6 +47,11 @@ namespace EComeAdminUI.Models
         {
            
             return _deliveryStore.FirstOrDefault(d => d.FSA == fsa);
+        }
+
+        public DeliveryStore UpdateDeliveryStore(DeliveryStore deliveryStore)
+        {
+            throw new NotImplementedException();
         }
     }
 }
