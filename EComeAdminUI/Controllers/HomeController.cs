@@ -36,6 +36,29 @@ namespace EComeAdminUI.Controllers
             return View();
         }
 
+
+        [HttpGet]
+        public async Task<ViewResult> Edit(string fsa)
+        {
+            ViewData["PagaTitle"] = "Edit Delivery Store";
+
+            var model = await _deliveryRepository.GetDeliveryStoreByFSA(fsa);
+
+            DeliveryStoreEditViewModel deliveryStoreEditViewModel = new()
+            {
+                //Id=model.Id,
+                //FSA=model.FSA,
+                StoreNumber = model.StoreNumber,
+                DeliveryVendorId = model.DeliveryVendorId,
+                DeliveryVendorName = model.DeliveryVendorName,
+                DeliveryFeePLU = model.DeliveryFeePLU,
+                DeliveryFeePromo = model.DeliveryFeePromo,
+                ClientCode = model.ClientCode
+            };
+
+            return View(deliveryStoreEditViewModel);
+        }
+
         [HttpPost]
         public IActionResult Create(DeliveryStore deliveryStore)
         {
@@ -46,18 +69,6 @@ namespace EComeAdminUI.Controllers
             }
             return View();
         }
-
-        //public ViewResult Details()
-        //{
-        //    DeliveryStoreViewModel deliveryStoreViewModel = new DeliveryStoreViewModel()
-        //    {
-        //        DeliveryStore = _deliveryRepository.GetDeliveryStore("L4T"),
-        //        PageTitle = "Delivery Store Details"
-        //    };
-        //    DeliveryStore model = _deliveryRepository.GetDeliveryStore("L4T");
-        //    ViewData["PagaTitle"] = "Delivery Store Details";
-        //    return View(deliveryStoreViewModel);
-        //}
 
 
         public async Task<ViewResult> Details(string fsa)
