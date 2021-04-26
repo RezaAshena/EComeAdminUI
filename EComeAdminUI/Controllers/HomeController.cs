@@ -25,7 +25,7 @@ namespace EComeAdminUI.Controllers
 
         public async Task<ViewResult> Index()
         {
-            var model =await _deliveryRepository.GetAll();
+            var model = await _deliveryRepository.GetAll();
             return View(model);
         }
 
@@ -47,18 +47,30 @@ namespace EComeAdminUI.Controllers
             return View();
         }
 
-        public ViewResult Details()
+        //public ViewResult Details()
+        //{
+        //    DeliveryStoreViewModel deliveryStoreViewModel = new DeliveryStoreViewModel()
+        //    {
+        //        DeliveryStore = _deliveryRepository.GetDeliveryStore("L4T"),
+        //        PageTitle = "Delivery Store Details"
+        //    };
+        //    DeliveryStore model = _deliveryRepository.GetDeliveryStore("L4T");
+        //    ViewData["PagaTitle"] = "Delivery Store Details";
+        //    return View(deliveryStoreViewModel);
+        //}
+
+
+        public async Task<ViewResult> Details(string fsa)
         {
             DeliveryStoreViewModel deliveryStoreViewModel = new DeliveryStoreViewModel()
             {
-                DeliveryStore = _deliveryRepository.GetDeliveryStore("L4T"),
+                DeliveryStore = await _deliveryRepository.GetDeliveryStoreByFSA(fsa),
                 PageTitle = "Delivery Store Details"
             };
-            DeliveryStore model = _deliveryRepository.GetDeliveryStore("L4T");
+            var model = await _deliveryRepository.GetDeliveryStoreByFSA(fsa);
             ViewData["PagaTitle"] = "Delivery Store Details";
-            return View(deliveryStoreViewModel);
+            return View(model);
         }
-
 
         public IActionResult Privacy()
         {

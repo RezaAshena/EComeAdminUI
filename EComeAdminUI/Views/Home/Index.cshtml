@@ -20,11 +20,11 @@
                 <tr>
                     <td align="center">
 
-                        <div asp-route-Id="@deliveryStore.Id" method="post">
+                        <div asp-route-Id="@deliveryStore.FSA" method="post">
 
                             <div>
-                                <a style="text-decoration:underline;text-align:left" asp-action="EditDeliveryStore" asp-controller="Home"
-                                   asp-route-Id=@deliveryStore.Id>
+                                <a style="text-decoration:underline;text-align:left" asp-action="Details" asp-controller="Home"
+                                   asp-route-FSA=@deliveryStore.FSA>
                                     <b>@deliveryStore.FSA</b>
                                 </a>
                             </div>

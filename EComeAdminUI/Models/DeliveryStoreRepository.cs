@@ -105,5 +105,40 @@ namespace EComeAdminUI.Models
             }
             return deliveryStore;
         }
+
+        public async Task<DeliveryStore> GetDeliveryStoreByFSA(string fsa)
+        {
+            var searchRequest = new SearchRequest<DeliveryStore>()
+            {
+                Query = new MatchQuery
+                {
+                    Field = Infer.Field<DeliveryStore>(o => o.FSA),
+                    Query = fsa
+                }
+            };
+
+            var searchResponse = await _elasticClient.SearchAsync<DeliveryStore>(searchRequest);
+
+            if (searchResponse.Documents.Count > 0)
+            {
+                var storeResponse = searchResponse.Documents.FirstOrDefault();
+                DeliveryStore ds = new()
+                {
+                  Id= storeResponse.Id,
+                  FSA=storeResponse.FSA,
+                  StoreNumber=storeResponse.StoreNumber,
+                  DeliveryVendorId=storeResponse.DeliveryVendorId,
+                  DeliveryVendorName=storeResponse.DeliveryVendorName,
+                  DeliveryFeePLU=storeResponse.DeliveryFeePLU,
+                  DeliveryFeePromo=storeResponse.DeliveryFeePromo,
+                  ClientCode=storeResponse.ClientCode
+                };
+                return ds;
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

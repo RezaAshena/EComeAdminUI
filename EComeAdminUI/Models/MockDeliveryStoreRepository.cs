@@ -49,6 +49,11 @@ namespace EComeAdminUI.Models
             return _deliveryStore.FirstOrDefault(d => d.FSA == fsa);
         }
 
+        public Task<DeliveryStore> GetDeliveryStoreByFSA(string fsa)
+        {
+            throw new NotImplementedException();
+        }
+
         public DeliveryStore UpdateDeliveryStore(DeliveryStore deliveryStore)
         {
             throw new NotImplementedException();
