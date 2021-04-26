@@ -1,36 +1,33 @@
-﻿@*@model DeliveryStoreViewModel*@
-<h3>Details Page</h3>
-
-<h3>@ViewData["PageTitle"]</h3>
-
+﻿
 @{
-    var deliveryStore = ViewData["DeliveryStore"] as EComeAdminUI.Models.DeliveryStore;
+    ViewBag.Title = "Delivery store Details";
+
 }
 
+<div class="row justify-content-center m-3">
+    <div class="col-sm-8">
+        <div class="card">
+            <div class="card-header text-center" style="color:blue">
+                <h1>@Model.FSA</h1>
+            </div>
 
-<div>
-    Id:@Model.Id
-</div>
-<div>
-    FSA:@Model.FSA
-</div>
+            <div class="card-body text-center">
+                <h4> ID : @Model.Id</h4>
+                <h4>FSA : @Model.FSA</h4>
+                <h4>StoreNumber : @Model.StoreNumber</h4>
+                <h4>Delivery Vendor Id : @Model.DeliveryVendorId</h4>
+                <h4>Delivery Vendor Name : @Model.DeliveryVendorName</h4>
+                <h4>Delivery Fee PLU : @Model.DeliveryFeePLU</h4>
+                <h4>Delivery Fee Promo : @Model.DeliveryFeePromo</h4>
+                <h4>ClientCode : @Model.ClientCode</h4>
 
-<div>
-    StoreNumber:@Model.StoreNumber
-</div>
-<div>
-    DeliveryVendorId:@Model.DeliveryVendorId
-</div>
-<div>
-    DeliveryVendorName:@Model.DeliveryVendorName
-</div>
-<div>
-    DeliveryFeePLU:@Model.DeliveryFeePLU
-</div>
-<div>
-    DeliveryFeePromo:@Model.DeliveryFeePromo
-</div>
-<div>
-    ClientCode:@Model.ClientCode
+            </div>
+            <div class="card-footer text-center">
+                <a asp-controller="home" asp-action="index" class="btn btn-primary">Back</a>
+                <a asp-controller="home" asp-action="edit" asp-route-FSA="@Model.FSA" class="btn btn-primary">Edit</a>
+                <a href="#" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
 </div>
 
