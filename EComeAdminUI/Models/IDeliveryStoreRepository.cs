@@ -23,7 +23,7 @@ namespace EComeAdminUI.Models
 
         Task<DeliveryStore> GetDeliveryStoreByFSA(string fsa);
 
-        Task<bool> DeleteDeliveryStore(DeliveryStore deliveryStore);
+        Task<bool> DeleteDeliveryStore(string id);
 
 
     }

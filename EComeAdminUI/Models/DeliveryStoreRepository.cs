@@ -66,9 +66,7 @@ namespace EComeAdminUI.Models
             var getRequest = new GetRequest<DeliveryStore>(id);
             var searchResponse = await _elasticClient.GetAsync<DeliveryStore>(getRequest);
 
-             
-      
-                return searchResponse.Source;
+            return searchResponse.Source;
         }
 
         public async Task<DeliveryStore> GetDeliveryStoreByFSA(string fsa)
@@ -121,11 +119,9 @@ namespace EComeAdminUI.Models
         }
 
 
-        public async Task<bool> DeleteDeliveryStore(DeliveryStore deliveryStore)
+        public async Task<bool> DeleteDeliveryStore(string id)
         {
-
-            DeliveryStore deliveryStoredelete = _deliveryStore.FirstOrDefault(d => d.Id == deliveryStore.Id);
-            var response = await _elasticClient.DeleteAsync<DeliveryStore>(deliveryStoredelete);
+            var response = await _elasticClient.DeleteAsync<DeliveryStore>(id);
             return response.IsValid;
 
         }

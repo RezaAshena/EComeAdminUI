@@ -82,18 +82,6 @@ namespace EComeAdminUI.Controllers
         }
 
 
-        //public async Task<ViewResult> Details(string id)
-        //{
-        //    DeliveryStoreViewModel deliveryStoreViewModel = new DeliveryStoreViewModel()
-        //    {
-        //        DeliveryStore = await _deliveryRepository.GetDeliveryStoreById(id),
-        //        PageTitle = "Delivery Store Details"
-        //    };
-        //    var model = await _deliveryRepository.GetDeliveryStoreById(id);
-        //    ViewData["PagaTitle"] = "Delivery Store Details";
-        //    return View(model);
-        //}
-
         public async Task<ViewResult> Details(string id)
         {
 
@@ -102,15 +90,18 @@ namespace EComeAdminUI.Controllers
             return View(model);
         }
 
-
-        public IActionResult Delete(DeliveryStore deliveryStore)
+        public async Task<IActionResult> Delete(string id)
         {
-            if (ModelState.IsValid)
+            var deliveryStoreForDelete = await _deliveryRepository.GetDeliveryStoreById(id);
+            if(deliveryStoreForDelete == null)
             {
-                var newDeliveryStore = _deliveryRepository.DeleteDeliveryStore(deliveryStore);
-                return RedirectToAction("Index", new { id = newDeliveryStore.Id });
+                return BadRequest();
             }
-            return View();
+
+            var response = await _deliveryRepository.DeleteDeliveryStore(id);
+
+            return RedirectToAction("Index", new { id = deliveryStoreForDelete.Id });
+
         }
         public IActionResult Privacy()
         {
