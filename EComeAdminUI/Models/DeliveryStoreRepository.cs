@@ -61,6 +61,16 @@ namespace EComeAdminUI.Models
 
         }
 
+        public async Task<DeliveryStore> GetDeliveryStoreById(string id)
+        {
+            var getRequest = new GetRequest<DeliveryStore>(id);
+            var searchResponse = await _elasticClient.GetAsync<DeliveryStore>(getRequest);
+
+             
+      
+                return searchResponse.Source;
+        }
+
         public async Task<DeliveryStore> GetDeliveryStoreByFSA(string fsa)
         {
             var searchRequest = new SearchRequest<DeliveryStore>()
@@ -120,11 +130,6 @@ namespace EComeAdminUI.Models
 
         }
 
-        public async Task<DeliveryStore> GetDeliveryStoreById(string id)
-        {
-            var getRequest = new GetRequest<DeliveryStore>(id);
-            var searchResponse = await _elasticClient.GetAsync<DeliveryStore>(getRequest);
-            return searchResponse.Source;
-        }
+
     }
 }

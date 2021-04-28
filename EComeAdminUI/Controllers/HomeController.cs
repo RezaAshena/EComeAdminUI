@@ -82,20 +82,27 @@ namespace EComeAdminUI.Controllers
         }
 
 
+        //public async Task<ViewResult> Details(string id)
+        //{
+        //    DeliveryStoreViewModel deliveryStoreViewModel = new DeliveryStoreViewModel()
+        //    {
+        //        DeliveryStore = await _deliveryRepository.GetDeliveryStoreById(id),
+        //        PageTitle = "Delivery Store Details"
+        //    };
+        //    var model = await _deliveryRepository.GetDeliveryStoreById(id);
+        //    ViewData["PagaTitle"] = "Delivery Store Details";
+        //    return View(model);
+        //}
+
         public async Task<ViewResult> Details(string id)
         {
-            DeliveryStoreViewModel deliveryStoreViewModel = new DeliveryStoreViewModel()
-            {
-                DeliveryStore = await _deliveryRepository.GetDeliveryStoreById(id),
-                PageTitle = "Delivery Store Details"
-            };
+
             var model = await _deliveryRepository.GetDeliveryStoreById(id);
-            ViewData["PagaTitle"] = "Delivery Store Details";
+
             return View(model);
         }
 
 
-   
         public IActionResult Delete(DeliveryStore deliveryStore)
         {
             if (ModelState.IsValid)

@@ -8,11 +8,11 @@
     <div class="col-sm-8">
         <div class="card">
             <div class="card-header text-center" style="color:blue">
-                <h1>@Model.Id</h1>
+                <h1>@Model.FSA</h1>
             </div>
 
             <div class="card-body text-center">
-                <h4> ID : @Model.Id</h4>
+                <h4> ID : @Context.Request.Path.ToString().Split('/').Last()</h4>
                 <h4>FSA : @Model.FSA</h4>
                 <h4>StoreNumber : @Model.StoreNumber</h4>
                 <h4>Delivery Vendor Id : @Model.DeliveryVendorId</h4>
@@ -25,7 +25,7 @@
             <div class="card-footer text-center">
                 <a asp-controller="home" asp-action="index" class="btn btn-primary">Back</a>
                 <a asp-controller="home" asp-action="edit" asp-route-FSA="@Model.FSA" class="btn btn-primary">Edit</a>
-                <a asp-controller="home" asp-action="Delete" asp-route-FSA="@Model.FSA"  class="btn btn-danger">Delete</a>
+                <a asp-controller="home" asp-action="Delete" asp-route-FSA="@Model.FSA" class="btn btn-danger">Delete</a>
             </div>
         </div>
     </div>
