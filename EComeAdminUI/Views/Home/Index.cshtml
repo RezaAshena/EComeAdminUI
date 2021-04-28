@@ -1,7 +1,7 @@
 ﻿<table class="table table-striped table-bordered table-sm table-hover followup" style="width: 100%;">
         <caption style="text-align:center;caption-side:top;color:#0275d8;font-size:medium;font-weight:bolder">Delivery Stores</caption>
         <thead class="badge-primary">
-            <tr>
+            <tr style="text-align:center">
                 <th>FSA</th>
                 <th>Store Number</th>
                 <th>Delivery Vendor Id</th>
@@ -21,11 +21,11 @@
             <tr>
                 <td align="center">
 
-                    <div asp-route-Id="@deliveryStore.FSA" method="post">
+                    <div asp-route-Id="@deliveryStore.Id" method="post">
 
                         <div>
                             <a style="text-decoration:underline;text-align:left" asp-action="Details" asp-controller="Home"
-                               asp-route-FSA=@deliveryStore.FSA>
+                               asp-route-Id=@deliveryStore.Id>
                                 <b>@deliveryStore.FSA</b>
                             </a>
                         </div>

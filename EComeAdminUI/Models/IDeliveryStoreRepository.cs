@@ -18,13 +18,11 @@ namespace EComeAdminUI.Models
 
         Task<DeliveryStore> GetDeliveryStoreById(string id);
 
-        // DeliveryStore DeleteDeliveryStore(string fsa);
 
         Task<bool> UpdateDeliveryStore(DeliveryStore deliveryStore);
 
         Task<DeliveryStore> GetDeliveryStoreByFSA(string fsa);
 
-        //Task<bool> DeleteDeliveryStoreByFSA(DeliveryStore deliveryStore);
         Task<bool> DeleteDeliveryStore(DeliveryStore deliveryStore);
 
 

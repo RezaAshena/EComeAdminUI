@@ -82,14 +82,14 @@ namespace EComeAdminUI.Controllers
         }
 
 
-        public async Task<ViewResult> Details(string fsa)
+        public async Task<ViewResult> Details(string id)
         {
             DeliveryStoreViewModel deliveryStoreViewModel = new DeliveryStoreViewModel()
             {
-                DeliveryStore = await _deliveryRepository.GetDeliveryStoreByFSA(fsa),
+                DeliveryStore = await _deliveryRepository.GetDeliveryStoreById(id),
                 PageTitle = "Delivery Store Details"
             };
-            var model = await _deliveryRepository.GetDeliveryStoreByFSA(fsa);
+            var model = await _deliveryRepository.GetDeliveryStoreById(id);
             ViewData["PagaTitle"] = "Delivery Store Details";
             return View(model);
         }

@@ -17,13 +17,6 @@ namespace EComeAdminUI.Models
             _databaseClient = databaseClient;
             _elasticClient = _databaseClient.GetDeliveryStoreIndexElasticClient();
         }
-        //public DeliveryStore AddDeliveryStore(DeliveryStore deliveryStore)
-        //{
-        //    deliveryStore.Id = new Guid();
-        //    _deliveryStore.Add(deliveryStore);
-        //    return deliveryStore;
-        //}
-
 
 
         public IEnumerable<DeliveryStore> GetAllDeliveryStore()
@@ -38,8 +31,6 @@ namespace EComeAdminUI.Models
 
         public async Task<List<DeliveryStore>> GetAll()
         {
-
-
             var searchRequest = new SearchRequest<DeliveryStore>()
             {
                 From = 0,
@@ -61,8 +52,6 @@ namespace EComeAdminUI.Models
                      return hit.Source;
                  }).ToList();
 
-
-
                 return deliveryStoreList;
             }
             else
@@ -71,35 +60,6 @@ namespace EComeAdminUI.Models
             }
 
         }
-
-        //public DeliveryStore DeleteDeliveryStore(string fsa)
-        //{
-        //    DeliveryStore deliveryStore = _deliveryStore.FirstOrDefault(d => d.FSA == fsa);
-        //    if (deliveryStore != null)
-        //    {
-        //        _deliveryStore.Remove(deliveryStore);
-        //    }
-        //    return deliveryStore;
-        //}
-
-        //public DeliveryStore UpdateDeliveryStore(DeliveryStore deliveryStoreChanges)
-        //{
-        //    DeliveryStore deliveryStore = _deliveryStore.FirstOrDefault(d => d.FSA == deliveryStoreChanges.FSA);
-        //    if (deliveryStore != null)
-        //    {
-        //        deliveryStore.Id = deliveryStoreChanges.Id;
-        //        deliveryStore.FSA = deliveryStoreChanges.FSA;
-        //        deliveryStore.StoreNumber = deliveryStoreChanges.StoreNumber;
-        //        deliveryStore.DeliveryVendorId = deliveryStoreChanges.DeliveryVendorId;
-        //        deliveryStore.DeliveryVendorName = deliveryStoreChanges.DeliveryVendorName;
-        //        deliveryStore.DeliveryFeePLU = deliveryStoreChanges.DeliveryFeePLU;
-        //        deliveryStore.DeliveryFeePromo = deliveryStoreChanges.DeliveryFeePromo;
-        //        deliveryStore.ClientCode = deliveryStoreChanges.ClientCode;
-
-
-        //    }
-        //    return deliveryStore;
-        //}
 
         public async Task<DeliveryStore> GetDeliveryStoreByFSA(string fsa)
         {
@@ -150,17 +110,11 @@ namespace EComeAdminUI.Models
             return response.IsValid;
         }
 
-        //public async Task<bool> DeleteDeliveryStore(string fsa)
-        //{
-        //    var response = await _elasticClient.DeleteAsync<DeliveryStore>(fsa);
-        //    return response.IsValid;
-        //}
-
 
         public async Task<bool> DeleteDeliveryStore(DeliveryStore deliveryStore)
         {
 
-            DeliveryStore deliveryStoredelete = _deliveryStore.FirstOrDefault(d => d.FSA == deliveryStore.FSA);
+            DeliveryStore deliveryStoredelete = _deliveryStore.FirstOrDefault(d => d.Id == deliveryStore.Id);
             var response = await _elasticClient.DeleteAsync<DeliveryStore>(deliveryStoredelete);
             return response.IsValid;
 
