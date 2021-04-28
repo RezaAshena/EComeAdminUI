@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\MockDeliveryStoreRepository.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Elasticsearch.Net" Version="7.5.1" />
     <PackageReference Include="Elasticsearch.Net.Aws" Version="7.0.4" />
     <PackageReference Include="NEST" Version="7.5.1" />

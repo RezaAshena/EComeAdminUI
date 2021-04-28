@@ -9,7 +9,8 @@ namespace EComeAdminUI.Models
 {
     public class DeliveryStore
     {
-        public Guid Id { get; set; }
+      
+        public string Id { get; set; }
 
         [Required]
         public string FSA { get; set; } 

@@ -60,12 +60,23 @@ namespace EComeAdminUI.Controllers
         }
 
         [HttpPost]
+        public IActionResult Edit(DeliveryStore deliveryStore)
+        {
+            if (ModelState.IsValid)
+            {
+                var changeDeliveryStore = _deliveryRepository.UpdateDeliveryStore(deliveryStore);
+                return RedirectToAction("Index", new { id = changeDeliveryStore.Id });
+            }
+            return View();
+        }
+
+        [HttpPost]
         public IActionResult Create(DeliveryStore deliveryStore)
         {
             if (ModelState.IsValid)
             {
                 var newDeliveryStore = _deliveryRepository.AddDeliveryStore(deliveryStore);
-                return RedirectToAction("Details", new { id = newDeliveryStore.Id });
+                return RedirectToAction("Index", new { id = newDeliveryStore.Id });
             }
             return View();
         }
@@ -83,6 +94,17 @@ namespace EComeAdminUI.Controllers
             return View(model);
         }
 
+
+   
+        public IActionResult Delete(DeliveryStore deliveryStore)
+        {
+            if (ModelState.IsValid)
+            {
+                var newDeliveryStore = _deliveryRepository.DeleteDeliveryStore(deliveryStore);
+                return RedirectToAction("Index", new { id = newDeliveryStore.Id });
+            }
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();

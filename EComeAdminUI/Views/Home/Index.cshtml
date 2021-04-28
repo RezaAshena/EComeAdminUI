@@ -1,5 +1,5 @@
 ﻿<table class="table table-striped table-bordered table-sm table-hover followup" style="width: 100%;">
-        <caption style="text-align:center;caption-side:top;color:#0275d8;font-size:medium;font-weight:bolder">Delivery Stors</caption>
+        <caption style="text-align:center;caption-side:top;color:#0275d8;font-size:medium;font-weight:bolder">Delivery Stores</caption>
         <thead class="badge-primary">
             <tr>
                 <th>FSA</th>
@@ -9,6 +9,7 @@
                 <th>Delivery Fee PLU</th>
                 <th>Delivery Fee Promo</th>
                 <th>Client Code</th>
+                <th>ID</th>
             </tr>
         </thead>
         <tbody>
@@ -17,65 +18,69 @@
             {
 
 
-                <tr>
-                    <td align="center">
+            <tr>
+                <td align="center">
 
-                        <div asp-route-Id="@deliveryStore.FSA" method="post">
+                    <div asp-route-Id="@deliveryStore.FSA" method="post">
 
-                            <div>
-                                <a style="text-decoration:underline;text-align:left" asp-action="Details" asp-controller="Home"
-                                   asp-route-FSA=@deliveryStore.FSA>
-                                    <b>@deliveryStore.FSA</b>
-                                </a>
-                            </div>
-
+                        <div>
+                            <a style="text-decoration:underline;text-align:left" asp-action="Details" asp-controller="Home"
+                               asp-route-FSA=@deliveryStore.FSA>
+                                <b>@deliveryStore.FSA</b>
+                            </a>
                         </div>
 
-
-                    </td>
-
-                    <td>
-                        <div align="center">
-                            <span class="col-sm-2 col-form-label">@deliveryStore.StoreNumber</span>
-                        </div>
-                    </td>
-
-                    <td>
-                        <div align="center">
-                            <span class="col-sm-2 col-form-label">@deliveryStore.DeliveryVendorId</span>
-                        </div>
-                    </td>
+                    </div>
 
 
-                    <td>
-                        <div align="center">
-                            <span class="col-sm-2 col-form-label">@deliveryStore.DeliveryVendorName</span>
-                        </div>
-                    </td>
+                </td>
 
-                    <td>
-                        <div align="center">
-                            <span class="col-sm-2 col-form-label">@deliveryStore.DeliveryFeePLU</span>
-                        </div>
-                    </td>
+                <td>
+                    <div align="center">
+                        <span class="col-sm-2 col-form-label">@deliveryStore.StoreNumber</span>
+                    </div>
+                </td>
 
-                    <td>
-                        <div align="center">
-                            <span class="col-sm-2 col-form-label">@deliveryStore.DeliveryFeePromo</span>
-                        </div>
-                    </td>
+                <td>
+                    <div align="center">
+                        <span class="col-sm-2 col-form-label">@deliveryStore.DeliveryVendorId</span>
+                    </div>
+                </td>
 
 
-                    <td>
-                        <div align="center">
-                            <span class="col-sm-2 col-form-label">@deliveryStore.ClientCode</span>
-                        </div>
-                    </td>
+                <td>
+                    <div align="center">
+                        <span class="col-sm-2 col-form-label">@deliveryStore.DeliveryVendorName</span>
+                    </div>
+                </td>
+
+                <td>
+                    <div align="center">
+                        <span class="col-sm-2 col-form-label">@deliveryStore.DeliveryFeePLU</span>
+                    </div>
+                </td>
+
+                <td>
+                    <div align="center">
+                        <span class="col-sm-2 col-form-label">@deliveryStore.DeliveryFeePromo</span>
+                    </div>
+                </td>
 
 
+                <td>
+                    <div align="center">
+                        <span class="col-sm-2 col-form-label">@deliveryStore.ClientCode</span>
+                    </div>
+                </td>
+
+                <td>
+                    <div align="center">
+                        <span class="col-sm-2 col-form-label">@deliveryStore.Id</span>
+                    </div>
+                </td>
 
 
-                </tr>
+            </tr>
 
 
 

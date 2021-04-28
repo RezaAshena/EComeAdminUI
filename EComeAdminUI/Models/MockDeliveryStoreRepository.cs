@@ -33,6 +33,11 @@ namespace EComeAdminUI.Models
             throw new NotImplementedException();
         }
 
+        public Task<bool> DeleteDeliveryStoreByFSA(string fsa)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<List<DeliveryStore>> GetAll()
         {
             throw new NotImplementedException();
@@ -55,6 +60,21 @@ namespace EComeAdminUI.Models
         }
 
         public DeliveryStore UpdateDeliveryStore(DeliveryStore deliveryStore)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<bool> IDeliveryStoreRepository.AddDeliveryStore(DeliveryStore deliveryStore)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<bool> IDeliveryStoreRepository.DeleteDeliveryStore(string id)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<bool> IDeliveryStoreRepository.UpdateDeliveryStore(DeliveryStore deliveryStore)
         {
             throw new NotImplementedException();
         }

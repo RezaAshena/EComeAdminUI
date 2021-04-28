@@ -1,4 +1,5 @@
-﻿using Nest;
+﻿using Microsoft.AspNetCore.Mvc;
+using Nest;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,12 +17,12 @@ namespace EComeAdminUI.Models
             _databaseClient = databaseClient;
             _elasticClient = _databaseClient.GetDeliveryStoreIndexElasticClient();
         }
-        public DeliveryStore AddDeliveryStore(DeliveryStore deliveryStore)
-        {
-            deliveryStore.Id = new Guid();
-            _deliveryStore.Add(deliveryStore);
-            return deliveryStore;
-        }
+        //public DeliveryStore AddDeliveryStore(DeliveryStore deliveryStore)
+        //{
+        //    deliveryStore.Id = new Guid();
+        //    _deliveryStore.Add(deliveryStore);
+        //    return deliveryStore;
+        //}
 
 
 
@@ -37,7 +38,7 @@ namespace EComeAdminUI.Models
 
         public async Task<List<DeliveryStore>> GetAll()
         {
-            DeliveryStore deliveryStore = null;
+
 
             var searchRequest = new SearchRequest<DeliveryStore>()
             {
@@ -48,27 +49,21 @@ namespace EComeAdminUI.Models
             };
 
             var searchResponse = await _elasticClient.SearchAsync<DeliveryStore>(searchRequest);
+
             if (searchResponse.Documents.Count > 0)
             {
                 var storeResponse = searchResponse.Documents;
-                List<DeliveryStore> dsList = new List<DeliveryStore>();
-                foreach (var item in storeResponse)
-                {
-                    deliveryStore = new DeliveryStore
-                    {
-                        Id = item.Id,
-                        FSA = item.FSA,
-                        StoreNumber = item.StoreNumber,
-                        DeliveryVendorId = item.DeliveryVendorId,
-                        DeliveryVendorName = item.DeliveryVendorName,
-                        DeliveryFeePLU = item.DeliveryFeePLU,
-                        DeliveryFeePromo = item.DeliveryFeePromo,
-                        ClientCode = item.ClientCode
-                    };
-                    dsList.Add(deliveryStore);
-                }
 
-                return dsList;
+
+                var deliveryStoreList = searchResponse.Hits.Select(hit =>
+                 {
+                     hit.Source.Id = hit.Id;
+                     return hit.Source;
+                 }).ToList();
+
+
+
+                return deliveryStoreList;
             }
             else
             {
@@ -77,34 +72,34 @@ namespace EComeAdminUI.Models
 
         }
 
-        public DeliveryStore DeleteDeliveryStore(string fsa)
-        {
-            DeliveryStore deliveryStore = _deliveryStore.FirstOrDefault(d => d.FSA == fsa);
-            if (deliveryStore != null)
-            {
-                _deliveryStore.Remove(deliveryStore);
-            }
-            return deliveryStore;
-        }
+        //public DeliveryStore DeleteDeliveryStore(string fsa)
+        //{
+        //    DeliveryStore deliveryStore = _deliveryStore.FirstOrDefault(d => d.FSA == fsa);
+        //    if (deliveryStore != null)
+        //    {
+        //        _deliveryStore.Remove(deliveryStore);
+        //    }
+        //    return deliveryStore;
+        //}
 
-        public DeliveryStore UpdateDeliveryStore(DeliveryStore deliveryStoreChanges)
-        {
-            DeliveryStore deliveryStore = _deliveryStore.FirstOrDefault(d => d.FSA == deliveryStoreChanges.FSA);
-            if (deliveryStore != null)
-            {
-                deliveryStore.Id = deliveryStoreChanges.Id;
-                deliveryStore.FSA = deliveryStoreChanges.FSA;
-                deliveryStore.StoreNumber = deliveryStoreChanges.StoreNumber;
-                deliveryStore.DeliveryVendorId = deliveryStoreChanges.DeliveryVendorId;
-                deliveryStore.DeliveryVendorName = deliveryStoreChanges.DeliveryVendorName;
-                deliveryStore.DeliveryFeePLU = deliveryStoreChanges.DeliveryFeePLU;
-                deliveryStore.DeliveryFeePromo = deliveryStoreChanges.DeliveryFeePromo;
-                deliveryStore.ClientCode = deliveryStoreChanges.ClientCode;
+        //public DeliveryStore UpdateDeliveryStore(DeliveryStore deliveryStoreChanges)
+        //{
+        //    DeliveryStore deliveryStore = _deliveryStore.FirstOrDefault(d => d.FSA == deliveryStoreChanges.FSA);
+        //    if (deliveryStore != null)
+        //    {
+        //        deliveryStore.Id = deliveryStoreChanges.Id;
+        //        deliveryStore.FSA = deliveryStoreChanges.FSA;
+        //        deliveryStore.StoreNumber = deliveryStoreChanges.StoreNumber;
+        //        deliveryStore.DeliveryVendorId = deliveryStoreChanges.DeliveryVendorId;
+        //        deliveryStore.DeliveryVendorName = deliveryStoreChanges.DeliveryVendorName;
+        //        deliveryStore.DeliveryFeePLU = deliveryStoreChanges.DeliveryFeePLU;
+        //        deliveryStore.DeliveryFeePromo = deliveryStoreChanges.DeliveryFeePromo;
+        //        deliveryStore.ClientCode = deliveryStoreChanges.ClientCode;
 
 
-            }
-            return deliveryStore;
-        }
+        //    }
+        //    return deliveryStore;
+        //}
 
         public async Task<DeliveryStore> GetDeliveryStoreByFSA(string fsa)
         {
@@ -124,14 +119,14 @@ namespace EComeAdminUI.Models
                 var storeResponse = searchResponse.Documents.FirstOrDefault();
                 DeliveryStore ds = new()
                 {
-                  Id= storeResponse.Id,
-                  FSA=storeResponse.FSA,
-                  StoreNumber=storeResponse.StoreNumber,
-                  DeliveryVendorId=storeResponse.DeliveryVendorId,
-                  DeliveryVendorName=storeResponse.DeliveryVendorName,
-                  DeliveryFeePLU=storeResponse.DeliveryFeePLU,
-                  DeliveryFeePromo=storeResponse.DeliveryFeePromo,
-                  ClientCode=storeResponse.ClientCode
+                    Id = storeResponse.Id,
+                    FSA = storeResponse.FSA,
+                    StoreNumber = storeResponse.StoreNumber,
+                    DeliveryVendorId = storeResponse.DeliveryVendorId,
+                    DeliveryVendorName = storeResponse.DeliveryVendorName,
+                    DeliveryFeePLU = storeResponse.DeliveryFeePLU,
+                    DeliveryFeePromo = storeResponse.DeliveryFeePromo,
+                    ClientCode = storeResponse.ClientCode
                 };
                 return ds;
             }
@@ -139,6 +134,43 @@ namespace EComeAdminUI.Models
             {
                 return null;
             }
+        }
+
+        public async Task<bool> AddDeliveryStore(DeliveryStore deliveryStore)
+        {
+            var response = await _elasticClient.IndexDocumentAsync(deliveryStore);
+            return response.IsValid;
+        }
+
+
+        [HttpPost]
+        public async Task<bool> UpdateDeliveryStore(DeliveryStore deliveryStore)
+        {
+            var response = await _elasticClient.IndexDocumentAsync(deliveryStore);
+            return response.IsValid;
+        }
+
+        //public async Task<bool> DeleteDeliveryStore(string fsa)
+        //{
+        //    var response = await _elasticClient.DeleteAsync<DeliveryStore>(fsa);
+        //    return response.IsValid;
+        //}
+
+
+        public async Task<bool> DeleteDeliveryStore(DeliveryStore deliveryStore)
+        {
+
+            DeliveryStore deliveryStoredelete = _deliveryStore.FirstOrDefault(d => d.FSA == deliveryStore.FSA);
+            var response = await _elasticClient.DeleteAsync<DeliveryStore>(deliveryStoredelete);
+            return response.IsValid;
+
+        }
+
+        public async Task<DeliveryStore> GetDeliveryStoreById(string id)
+        {
+            var getRequest = new GetRequest<DeliveryStore>(id);
+            var searchResponse = await _elasticClient.GetAsync<DeliveryStore>(getRequest);
+            return searchResponse.Source;
         }
     }
 }
