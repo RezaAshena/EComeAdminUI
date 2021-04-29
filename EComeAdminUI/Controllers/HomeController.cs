@@ -38,16 +38,16 @@ namespace EComeAdminUI.Controllers
 
 
         [HttpGet]
-        public async Task<ViewResult> Edit(string fsa)
+        public async Task<ViewResult> Edit(string id)
         {
             ViewData["PagaTitle"] = "Edit Delivery Store";
 
-            var model = await _deliveryRepository.GetDeliveryStoreByFSA(fsa);
+            var model = await _deliveryRepository.GetDeliveryStoreById(id);
 
             DeliveryStoreEditViewModel deliveryStoreEditViewModel = new()
             {
-                //Id=model.Id,
-                //FSA=model.FSA,
+
+                FSA = model.FSA,
                 StoreNumber = model.StoreNumber,
                 DeliveryVendorId = model.DeliveryVendorId,
                 DeliveryVendorName = model.DeliveryVendorName,
@@ -93,7 +93,7 @@ namespace EComeAdminUI.Controllers
         public async Task<IActionResult> Delete(string id)
         {
             var deliveryStoreForDelete = await _deliveryRepository.GetDeliveryStoreById(id);
-            if(deliveryStoreForDelete == null)
+            if (deliveryStoreForDelete == null)
             {
                 return BadRequest();
             }

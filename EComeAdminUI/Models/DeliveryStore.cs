@@ -28,7 +28,7 @@ namespace EComeAdminUI.Models
         [Required]
         public int DeliveryFeePLU { get; set; }
         [DisplayName("Delivery Fee Promo")]
-        [Required]
+
         public string DeliveryFeePromo { get; set; }
         [DisplayName("Client Code")]
         [Required]
