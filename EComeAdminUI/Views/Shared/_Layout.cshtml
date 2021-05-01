@@ -6,7 +6,8 @@
     <title>@ViewData["Title"] - M&M ECOM Admininstration UI</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-
+    @*<link rel="stylesheet"  href="~/lib/datatables/css/dataTables.bootstrap.css"/>*@
+    <link rel="stylesheet"  href="~/lib/datatables/css/dataTables.bootstrap4.css"/>
 
 </head>
 <body>
@@ -45,6 +46,8 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/datatables//js/jquery.dataTables.js"></script>
+    <script src="~/lib//datatables/js/dataTables.bootstrap4.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
