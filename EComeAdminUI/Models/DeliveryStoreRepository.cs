@@ -11,7 +11,7 @@ namespace EComeAdminUI.Models
     {
         private readonly IDatabaseClient _databaseClient;
         private readonly IElasticClient _elasticClient;
-        private List<DeliveryStore> _deliveryStore;
+        private readonly List<DeliveryStore> _deliveryStore;
         public DeliveryStoreRepository(IDatabaseClient databaseClient)
         {
             _databaseClient = databaseClient;
