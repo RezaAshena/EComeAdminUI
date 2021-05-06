@@ -75,8 +75,10 @@ namespace EComeAdminUI.Controllers
         {
             if (ModelState.IsValid)
             {
+                deliveryStore.Id = deliveryStore.FSA;
                 var newDeliveryStore = _deliveryRepository.AddDeliveryStore(deliveryStore);
-                return RedirectToAction("Index", new { id = newDeliveryStore.Id });
+
+                return RedirectToAction("Index");
             }
             return View();
         }

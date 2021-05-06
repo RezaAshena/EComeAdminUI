@@ -14,78 +14,81 @@
         </tr>
     </thead>
     <tbody>
-
-        @foreach (var deliveryStore in Model)
+        @if (Model!=null)
         {
+            @foreach (var deliveryStore in Model)
+            {
 
 
-            <tr>
-                <td align="center">
+                <tr>
+                    <td align="center">
 
-                    <div asp-route-Id="@deliveryStore.Id" method="post">
+                        <div asp-route-Id="@deliveryStore.Id" method="post">
 
-                        <div>
-                            <a style="text-decoration:underline;text-align:left" asp-action="Details" asp-controller="Home"
-                               asp-route-Id=@deliveryStore.Id>
-                                <b>@deliveryStore.FSA</b>
-                            </a>
+                            <div>
+                                <a style="text-decoration:underline;text-align:left" asp-action="Details" asp-controller="Home"
+                                   asp-route-Id=@deliveryStore.Id>
+                                    <b>@deliveryStore.FSA</b>
+                                </a>
+                            </div>
+
                         </div>
 
-                    </div>
+
+                    </td>
+
+                    <td>
+                        <div align="center">
+                            <span class="col-sm-2 col-form-label">@deliveryStore.StoreNumber</span>
+                        </div>
+                    </td>
+
+                    <td>
+                        <div align="center">
+                            <span class="col-sm-2 col-form-label">@deliveryStore.DeliveryVendorId</span>
+                        </div>
+                    </td>
 
 
-                </td>
+                    <td>
+                        <div align="center">
+                            <span class="col-sm-2 col-form-label">@deliveryStore.DeliveryVendorName</span>
+                        </div>
+                    </td>
 
-                <td>
-                    <div align="center">
-                        <span class="col-sm-2 col-form-label">@deliveryStore.StoreNumber</span>
-                    </div>
-                </td>
+                    <td>
+                        <div align="center">
+                            <span class="col-sm-2 col-form-label">@deliveryStore.DeliveryFeePLU</span>
+                        </div>
+                    </td>
 
-                <td>
-                    <div align="center">
-                        <span class="col-sm-2 col-form-label">@deliveryStore.DeliveryVendorId</span>
-                    </div>
-                </td>
-
-
-                <td>
-                    <div align="center">
-                        <span class="col-sm-2 col-form-label">@deliveryStore.DeliveryVendorName</span>
-                    </div>
-                </td>
-
-                <td>
-                    <div align="center">
-                        <span class="col-sm-2 col-form-label">@deliveryStore.DeliveryFeePLU</span>
-                    </div>
-                </td>
-
-                <td>
-                    <div align="center">
-                        <span class="col-sm-2 col-form-label">@deliveryStore.DeliveryFeePromo</span>
-                    </div>
-                </td>
+                    <td>
+                        <div align="center">
+                            <span class="col-sm-2 col-form-label">@deliveryStore.DeliveryFeePromo</span>
+                        </div>
+                    </td>
 
 
-                <td>
-                    <div align="center">
-                        <span class="col-sm-2 col-form-label">@deliveryStore.ClientCode</span>
-                    </div>
-                </td>
+                    <td>
+                        <div align="center">
+                            <span class="col-sm-2 col-form-label">@deliveryStore.ClientCode</span>
+                        </div>
+                    </td>
 
-                <td>
-                    <div align="center">
-                        <span class="col-sm-2 col-form-label">@deliveryStore.Id</span>
-                    </div>
-                </td>
+                    <td>
+                        <div align="center">
+                            <span class="col-sm-2 col-form-label">@deliveryStore.Id</span>
+                        </div>
+                    </td>
 
 
-            </tr>
+                </tr>
 
 
 
+            }
         }
+
 
     </tbody>
 </table>
@@ -96,7 +99,7 @@
         $(document).ready(function () {
             $("#FSATable").DataTable();           
         });
-        //window.location.reload();
+        //Refresh View once;
         window.onload = function () {
             if (!window.location.hash) {
                 window.location = window.location + '#FSATable';
